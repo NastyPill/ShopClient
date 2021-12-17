@@ -7,6 +7,7 @@ import com.shop.model.Good;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,7 +31,7 @@ public class RestService {
 
     public List<Good> getAllGoods() throws IOException {
         Request request = new Request.Builder()
-                .url(HOST + BASE_URL + "/all")
+                .url(new URL(HOST + BASE_URL + "/all"))
                 .build();
         Response response = client.newCall(request).execute();
         String json = Objects.requireNonNull(response.body()).string();
@@ -42,7 +43,7 @@ public class RestService {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         RequestBody formBody = RequestBody.create(ow.writeValueAsString(good), JSON);
         Request request = new Request.Builder()
-                .url(HOST + BASE_URL + "/admin/add")
+                .url(new URL(HOST + BASE_URL + "/admin/add"))
                 .post(formBody)
                 .build();
         Response response = client.newCall(request).execute();
@@ -55,7 +56,7 @@ public class RestService {
                 .add("id", id.toString())
                 .build();
         Request request = new Request.Builder()
-                .url(HOST + BASE_URL + "/buy")
+                .url(new URL(HOST + BASE_URL + "/buy"))
                 .post(formBody)
                 .build();
         Response response = client.newCall(request).execute();
