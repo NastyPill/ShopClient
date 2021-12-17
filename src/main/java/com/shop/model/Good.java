@@ -19,6 +19,6 @@ public class Good {
 
     @Override
     public String toString() {
-        return "Good: \n \t id: " + id + "\n \t name: " + name + "\n \t count: " + count;
+        return "Item: \n \t id: " + id + "\n \t name: " + name + "\n \t count: " + count;
     }
 }

@@ -51,9 +51,10 @@ public class RestService {
         return status;
     }
 
-    public String buyGoods(Integer id) throws IOException {
+    public String buyGoods(Integer id, Integer count) throws IOException {
         RequestBody formBody = new FormBody.Builder()
                 .add("id", id.toString())
+                .add("count", count.toString())
                 .build();
         Request request = new Request.Builder()
                 .url(new URL(HOST + BASE_URL + "/buy"))

@@ -52,17 +52,10 @@ public class ConsoleInterface implements Runnable{
                     String[] commandParts = command.split(" ");
                     Integer id = Integer.parseInt(commandParts[1]);
                     Integer count = Integer.parseInt(commandParts[2]);
-                    int totalBought = 0;
-                    for (int i = 0; i < count; i++) {
-                        if(restService.buyGoods(id).contains("OK")) {
-                            totalBought++;
-                        } else {
-                            break;
-                        }
-                    }
-                    System.out.println("You have bought " + totalBought + " items with id: " + id);
-                    if(totalBought != count) {
-                        System.out.println(ANSI_RED + "Sorry but warehouse cant offer you more, then " + totalBought + " items with id: " + id);
+                    if(restService.buyGoods(id, count).contains("OK")) {
+                        System.out.println("You have bought " + count + " items with id: " + id);
+                    } else {
+                        System.out.println(ANSI_RED + "Sorry but warehouse cant offer you " + count + " items with id: " + id + ANSI_RESET);
                     }
                 }
                 if(command.contains("add")) {
